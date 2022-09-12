@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "ccad92c2-ba54-4294-9ea3-580e172653af",
+		"name": "MovieRecommendation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5094996"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"ozgurgelekci@gmail.com\",\r\n  \"password\": \"123Pa$$word!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7022/accounts/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7022",
+							"path": [
+								"accounts",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "GetById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7022/movies/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7022",
+							"path": [
+								"movies",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7022/movies?pageNumber=3&pageSize=3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7022",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "3"
+								},
+								{
+									"key": "pageSize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MovieVotes",
+			"item": [
+				{
+					"name": "Create Movie Vote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movieId\": 22,\r\n  \"vote\": 10,\r\n  \"comment\": \"harika film!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7022/movieVotes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7022",
+							"path": [
+								"movieVotes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MovieRecommendations",
+			"item": [
+				{
+					"name": "Movie Recommendation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"senderName\": \"özgür\",\r\n  \"movieName\": \"Spiderman\",\r\n  \"receiveEmail\": \"ozgurgelekci@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7022/MovieRecommendations",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7022",
+							"path": [
+								"MovieRecommendations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
