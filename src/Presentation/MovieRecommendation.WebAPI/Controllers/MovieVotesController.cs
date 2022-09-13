@@ -11,24 +11,13 @@ using System.Security.Claims;
 namespace MovieRecommendation.WebAPI.Controllers
 {
 
-    
+    [Authorize]
     public class MovieVotesController : BaseController
     {
         IMediator _mediator;
-        readonly ICacheManager cacheManager;
-
         public MovieVotesController(IMediator mediator, ICacheManager cacheManager)
         {
             _mediator = mediator;
-            this.cacheManager = cacheManager;
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            cacheManager.Clear();
-
-            return Ok();
         }
 
         [HttpPost]

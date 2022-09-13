@@ -1,7 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MovieRecommendation.Application.Features.Queries.Movies.GetByIdMovie;
-using MovieRecommendation.Application.Responses;
 using ProductExample.Application.Features.Queries.GetAllProduct;
 using System.Net;
 

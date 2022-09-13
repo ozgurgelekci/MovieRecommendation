@@ -1,4 +1,6 @@
-﻿using MovieRecommendation.Application.Interfaces.Caching;
+﻿using AutoMapper;
+using MovieRecommendation.Application.Features.Queries.Movies.GetByIdMovie;
+using MovieRecommendation.Application.Interfaces.Caching;
 using MovieRecommendation.Application.Interfaces.Repositories;
 using MovieRecommendation.Domain.Entities;
 using MovieRecommendation.Persistence.Models;
@@ -10,7 +12,7 @@ namespace MovieRecommendation.Persistence.Utilities
     public static class GetMovies
     {
 
-        public static async Task Invoke(IMovieRepository movieRepository, ICacheManager cacheManager)
+        public static async Task Invoke(IMovieRepository movieRepository, ICacheManager cacheManager, IMapper mapper)
         {
             var count = 50;
             int page = 1;
@@ -53,9 +55,10 @@ namespace MovieRecommendation.Persistence.Utilities
                         //moviesForBulkInsert.Add(movieEntity);
 
                         bool isCache = cacheManager.IsSet($"{movie.Id}");
+                        var mappedMovie = mapper.Map<GetByIdMovieQueryResponse>(movieEntity);
 
                         if (!isCache)
-                            cacheManager.Set($"{movie.Id}", movieEntity, 360000);
+                            cacheManager.Set($"{movie.Id}", mappedMovie, 360000);
 
                         await movieRepository.AddAsync(movieEntity);
                     }

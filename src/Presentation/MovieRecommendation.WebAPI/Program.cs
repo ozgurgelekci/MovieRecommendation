@@ -11,6 +11,8 @@ using MovieRecommendation.Persistence.Context;
 using MovieRecommendation.Persistence.Seeds;
 using MovieRecommendation.WebAPI.Services;
 using Hangfire;
+using Hangfire.SqlServer;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +34,7 @@ builder.Services.AddHangfireServer();
 
 #endregion
 
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => 
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -49,7 +51,7 @@ if (app.Environment.IsDevelopment())
 
     app.UseReDoc(options =>
     {
-        options.DocumentTitle = "Movie Recommendation Application";
+        options.DocumentTitle = "Movie Recommendation API";
         options.SpecUrl = "/swagger/v1/swagger.json";
     });
 }
@@ -88,7 +90,8 @@ using (var scope = app.Services.CreateScope())
     if (!movieRepository.GetAsync().Result.Any())
     {
         var cacheManager = scope.ServiceProvider.GetRequiredService<ICacheManager>();
-        await SeedMovies.SeedAsync(movieRepository, cacheManager);
+        var mapper = scope.ServiceProvider.GetRequiredService<IMapper>();
+        await SeedMovies.SeedAsync(movieRepository, cacheManager, mapper);
     }
 
     #endregion
@@ -104,7 +107,7 @@ app.UseCors(x => x
 
 #endregion
 
-app.UseHangfireServer();
+app.UseHangfireServer(new BackgroundJobServerOptions());
 
 GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 3 });
 

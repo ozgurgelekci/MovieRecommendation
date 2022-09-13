@@ -1,11 +1,13 @@
-﻿using MovieRecommendation.Application.Interfaces.Caching;
+﻿using AutoMapper;
+using MovieRecommendation.Application.Features.Queries.Movies.GetByIdMovie;
+using MovieRecommendation.Application.Interfaces.Caching;
 using MovieRecommendation.Application.Interfaces.Repositories;
 
 namespace MovieRecommendation.Persistence.Utilities
 {
     public static class UpdateMoviesVote
     {
-        public static void Invoke(IMovieRepository movieRepository, IMovieVoteRepository movieVoteRepository, ICacheManager cacheManager)
+        public static void Invoke(IMovieRepository movieRepository, IMovieVoteRepository movieVoteRepository, ICacheManager cacheManager, IMapper mapper)
         {
             var votes = movieVoteRepository.GetAsync().Result;
 
@@ -30,8 +32,9 @@ namespace MovieRecommendation.Persistence.Utilities
                         movie.VoteAverage = voteAverage;
 
                         var updatedMovie = movieRepository.Update(movie);
+                        var mappedMovie = mapper.Map<GetByIdMovieQueryResponse>(updatedMovie);
 
-                        cacheManager.Set($"{movie.Id}", updatedMovie, 360000);
+                        cacheManager.Set($"{movie.Id}", mappedMovie, 360000);
                     }
                 }
             }

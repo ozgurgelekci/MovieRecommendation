@@ -21,17 +21,17 @@ namespace MovieRecommendation.Application.Features.Queries.Movies.GetByIdMovie
         public async Task<GetByIdMovieQueryResponse> Handle(GetByIdMovieQueryRequest request, CancellationToken cancellationToken)
         {
 
-            //string cacheMovie = await _cacheManager.GetAsync($"{request.Id}");
+            string movieFromCache = await _cacheManager.GetAsync($"{request.Id}");
 
-            //if (cacheMovie != null)
-            //{
-            //    var deserializeMovie = JsonConvert.DeserializeObject<Movie>(cacheMovie);
+            if (movieFromCache != null)
+            {
+                var deserializeMovie = JsonConvert.DeserializeObject<Movie>(movieFromCache);
 
-            //    return _mapper.Map<GetByIdMovieQueryResponse>(deserializeMovie);
-            //}
+                return _mapper.Map<GetByIdMovieQueryResponse>(deserializeMovie);
+            }
 
-            Movie movie = _movieRepository.GetByIdWithChildAsync(request.Id);
-            return _mapper.Map<GetByIdMovieQueryResponse>(movie);
+            Movie movieFromDatabase = _movieRepository.GetByIdWithChildAsync(request.Id);
+            return _mapper.Map<GetByIdMovieQueryResponse>(movieFromDatabase);
         }
     }
 }
