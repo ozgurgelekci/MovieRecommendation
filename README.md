@@ -5,6 +5,8 @@
 - RabbitMQ
 - CQRS
 - MediatR
+- Hangfire Jobs
+- BackgroundService
 
 appsettings.json dosyasından SQLServer bilgileri düzenlendikten sonra proje çalıştırıldığında database ayağa kalkıyor.
 
