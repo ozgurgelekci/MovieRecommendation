@@ -17,4 +17,4 @@ SuperAdmin login bilgileri;
  Email = superadmin@gmail.com,
  Password = 123Pa$$word!
 
-MovieRecommendation.postman_collection.json dosyası postmane import edilerek endpointler çalıştırılabilir.
+MovieRecommendation.postman_collection.json dosyası Postman'e import edilerek endpointler çalıştırılabilir.
