@@ -8,6 +8,7 @@
 - Hangfire Jobs
 - BackgroundService
 - ReDoc
+- JWT
 
 appsettings.json dosyasından SQLServer bilgileri düzenlendikten sonra proje çalıştırıldığında database ayağa kalkıyor.
 
