@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"ozgurgelekci@gmail.com\",\r\n  \"password\": \"123Pa$$word!\"\r\n}",
+							"raw": "{\r\n  \"email\": \"superadmin@gmail.com\",\r\n  \"password\": \"123Pa$$word!\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
