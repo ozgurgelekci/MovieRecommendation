@@ -11,8 +11,8 @@ namespace MovieRecommendation.Persistence.Seeds
             //Seed Default User
             var defaultUser = new ApplicationUser
             {
-                UserName = "ozgurgelekci",
-                Email = "ozgurgelekci@gmail.com",
+                UserName = "superadmin",
+                Email = "superadmin@gmail.com",
                 FirstName = "Özgür",
                 LastName = "Gelekçi",
                 EmailConfirmed = true,
