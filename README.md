@@ -9,6 +9,7 @@
 - BackgroundService
 - ReDoc
 - JWT
+- Automapper
 
 appsettings.json dosyasından SQLServer bilgileri düzenlendikten sonra proje çalıştırıldığında database ayağa kalkıyor.
 
